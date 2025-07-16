@@ -1,5 +1,7 @@
 # Zed.GlobalErrorHandler
 
+[![NuGet](https://img.shields.io/nuget/v/Zed.GlobalErrorHandler.svg)](https://www.nuget.org/packages/Zed.GlobalErrorHandler)
+
 Zed.GlobalErrorHandler is a simple global exception handling middleware for ASP.NET Core. It allows you to map custom exceptions to specific HTTP status codes, log exceptions, and return consistent JSON error responses.
 
 ## Features
