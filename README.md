@@ -53,3 +53,28 @@ Internally, the middleware uses the provided mapping to determine the correct HT
 
 Logged errors include exception details and stack trace.
 
+## Advanced logging with Serilog
+You can also enable logging using Serilog with support for both rolling file logs and Seq server:
+
+```csharp
+builder.Services.AddGlobalErrorHandler(opt =>
+{
+    // Register your exceptions and HTTP status codes
+})
+.AddLogging(logging =>
+{
+    logging.AddSerilogGlobalLogger(options =>
+    {
+        // Enable file logging (daily rolling)
+        options.WithFile("logs/log-.txt", RollingInterval.Day, 7);
+
+        // Enable Seq logging (make sure Seq is running at the given URL)
+        options.WithSeq("http://localhost:5341");
+
+        // Optional: Set application name and minimum log level
+        options.WithApplicationName("YourProjectName");
+        options.WithMinimumLevel(LogEventLevel.Information);
+    });
+});
+```
+
